@@ -21,6 +21,7 @@ class VentureCapitalist
 
   def offer_contract(startup, type, amount)
     new_contract = FundingRound.new(startup, self, type, amount)
+
     self.funding_rounds << new_contract
     self.portfolio << startup
 
@@ -36,7 +37,9 @@ class VentureCapitalist
 
   def invested(domain)
     total = 0
-    startups = self.portfolio.find {|startup| startup.domain == domain}
+
+    startups = self.portfolio.select {|startup| startup.domain == domain}
+    binding.pry
     startups.each {|startup| total += startup.total_funds}
 
     total

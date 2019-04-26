@@ -8,6 +8,7 @@ class FundingRound
     @venture_capitalist = vc
     @type = type
     @investment = investment.to_f
+    
     @@all << self
   end
 

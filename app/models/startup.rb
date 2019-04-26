@@ -7,11 +7,12 @@ class Startup
     @name = name
     @founder = founder
     @domain = domain
-    @@all << self
     @investors = []
     @big_investors = []
     @total_funds = 0
     @num_funding_rounds = 0
+
+    @@all << self
   end
 
   def pivot(domain, name)
@@ -35,7 +36,7 @@ class Startup
 
   def sign_contract(vc, type, amount)
       new_contract = FundingRound.new(self, vc, type, amount)
-      binding.pry
+
       self.investors << vc
       self.big_investors << vc if VentureCapitalist.tres_commas_club.include?(vc)
       self.num_funding_rounds += 1
