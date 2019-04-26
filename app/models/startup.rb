@@ -3,6 +3,7 @@ class Startup
   attr_reader :founder
 
   @@all = []
+  
   def initialize(name, founder, domain)
     @name = name
     @founder = founder

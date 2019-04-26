@@ -18,5 +18,6 @@ startup.sign_contract(vc1, "Series A", 1000.0)
 startup.sign_contract(vc2, "Series B", 101.2)
 funding1 = FundingRound.new(startup, vc1, "Series A", 100)
 funding2 = FundingRound.new(startup2, vc2, "Series B", 101.1)
+
 binding.pry
 0 #leave this here to ensure binding.pry isn't the last line

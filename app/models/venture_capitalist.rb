@@ -1,13 +1,14 @@
 class VentureCapitalist
-
-  @@all = []
   attr_accessor :name, :total_worth, :funding_rounds, :portfolio
+  
+  @@all = []
 
   def initialize(name, total_worth)
     @name = name
     @total_worth = total_worth
     @funding_rounds = []
     @portfolio = []
+
     @@all << self
   end
 
