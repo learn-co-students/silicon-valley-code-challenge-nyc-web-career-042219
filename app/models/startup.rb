@@ -65,7 +65,7 @@ class Startup
 			if fr.startup == self && VentureCapitalist.tres_commas_club.include?(fr.venture_capitalist) 
 				fr.venture_capitalist
 			end
-		end
+		end.compact
 		array.uniq
 	end
 
