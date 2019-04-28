@@ -1,13 +1,11 @@
 class VentureCapitalist
-  attr_accessor :name, :total_worth, :funding_rounds, :portfolio
-  
+  attr_accessor :name, :total_worth
+
   @@all = []
 
   def initialize(name, total_worth)
     @name = name
     @total_worth = total_worth
-    @funding_rounds = []
-    @portfolio = []
 
     @@all << self
   end
@@ -22,14 +20,15 @@ class VentureCapitalist
 
   def offer_contract(startup, type, amount)
     new_contract = FundingRound.new(startup, self, type, amount)
+  end
 
-    self.funding_rounds << new_contract
-    self.portfolio << startup
+  def funding_rounds
+    FundingRound.all.select {|round| round.venture_capitalist == self}
+  end
 
-    startup.investors << self
-    startup.big_investors << self if VentureCapitalist.tres_commas_club.include?(vc)
-    startup.num_funding_rounds += 1
-    startup.total_funds += amount
+  def portfolio
+    rounds = self.funding_rounds
+    rounds.map {|round| round.startup}
   end
 
   def biggest_investment
@@ -38,11 +37,8 @@ class VentureCapitalist
 
   def invested(domain)
     total = 0
-
-    startups = self.portfolio.select {|startup| startup.domain == domain}
-    binding.pry
-    startups.each {|startup| total += startup.total_funds}
-
+    rounds = self.funding_rounds
+    rounds.each {|round| total += round.investment if round.startup.domain == domain}
     total
   end
 end
