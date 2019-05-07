@@ -5,54 +5,26 @@ def reload
 end
 # Insert code here to run before hitting the binding.pry
 # This is a convenient place to define variables and/or set up new object instances,
-# so they will be available to test and play around with in your console
+# so they will be available to test and play around with in your console\
+cellcases = Startup.new("Awesome Cases!" ,"Oscar" ,"www.casescases.com")
+stpjs = Startup.new("Star Trek Pajamas", "Jake", "wwww.stpjs.com")
+qun = Startup.new("star", "Qun", "www.moon.cn")
 
-class Startup
+hi = VentureCapitalist.new("sds")
+a = VentureCapitalist.new("a")
+b = VentureCapitalist.new("b")
+c = VentureCapitalist.new("c")
 
-attr_reader :name, :founder
-attr_accessor :domain, :name
-
-@@all = []
-@@all_domains = []
-
-def initialize(name, founder, domain)
-  @name = name
-  @founder = founder
-  @domain = domain
-  @@all << self
-  @@all_domains << domain
-end
-
-def name
-  @name
-end
-
-def founder
-  @founder
-end
-
-def pivot(domain, name)
-  self.domain = domain
-  self.name = name
-end
-
-def self.all
-  @@all
-end
-
-def self.find_by_founder(founder)
-  Startup.all.find do |startup|
-    if startup.founder == founder
-      startup.name
-    end
-  end
-end
-
-def self.domains
-  @@all_domains
-end
+a.total_worth = 3000000000
+b.total_worth = 5000000000
+c.total_worth = 4
 
 
-end
+funda = FundingRound.new(stpjs, a, "typea", 1000.00)
+fundb = FundingRound.new(qun, a, "typeb", 200.00)
+fundb1a = FundingRound.new(qun, a, "typeb", 100.00)
+fundb1b = FundingRound.new(qun, a, "typeb", 500.00)
+fundb1c = FundingRound.new(qun, b, "typeb", 200.00)
+fundc = FundingRound.new(cellcases, b, "typec", 300.00)
 binding.pry
 0 #leave this here to ensure binding.pry isn't the last line
